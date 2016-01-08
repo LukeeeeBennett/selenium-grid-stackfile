@@ -1,0 +1,18 @@
+# Selenium grid hub container.
+hub:
+  image: selenium/hub:2.48.2
+  restart: on-failure:20
+  ports:
+    - 4444:4444
+# Selenium Firefox node container.
+firefox:
+  image: selenium/node-firefox:2.48.2
+  restart: on-failure:10
+  links:
+    - hub
+# Selenium Chrome node container.
+chrome:
+  image: selenium/node-chrome:2.48.2
+  restart: on-failure:10
+  links:
+    - hub
