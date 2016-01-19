@@ -1,18 +1,22 @@
 # Selenium grid hub container.
 hub:
   image: selenium/hub:2.48.2
-  restart: on-failure:20
+  restart: always
+  target_num_containers: 1
+  environment:
+    GRID_TIMEOUT: 60000
+    GRID_BROWSER_TIMEOUT: 60000
   ports:
     - 4444:4444
 # Selenium Firefox node container.
 firefox:
   image: selenium/node-firefox:2.48.2
-  restart: on-failure:10
+  autodestroy: always
   links:
     - hub
 # Selenium Chrome node container.
 chrome:
   image: selenium/node-chrome:2.48.2
-  restart: on-failure:10
+  autodestroy: always
   links:
     - hub
