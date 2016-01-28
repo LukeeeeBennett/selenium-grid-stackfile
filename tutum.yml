@@ -4,8 +4,14 @@ hub:
   restart: always
   target_num_containers: 1
   environment:
-    GRID_TIMEOUT: 60000
-    GRID_BROWSER_TIMEOUT: 60000
+    GRID_NEW_SESSION_WAIT_TIMEOUT: -1
+    GRID_JETTY_MAX_THREADS: -1
+    GRID_NODE_POLLING: 5000
+    GRID_CLEAN_UP_CYCLE: 5000
+    GRID_TIMEOUT: 30000
+    GRID_BROWSER_TIMEOUT: 0
+    GRID_MAX_SESSION: 5
+    GRID_UNREGISTER_IF_STILL_DOWN_AFTER: 30000
   ports:
     - 4444:4444
 # Selenium Firefox node container.
